@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BigBoid : MonoBehaviour
 {
-    
+    public bool avoidanceEnabled = true;
     public Vector3 velocity;
     public float speed;
     public Vector3 acceleration;
@@ -116,6 +116,12 @@ public class BigBoid : MonoBehaviour
         }
     }
     */
+    public Vector3 avoidance_calc()
+    {
+        Vector3 force = this.GetComponent<ObstacleAvoidance>().Calculate();
+
+        return force;
+    }
 
     public Vector3 Seek(Vector3 target)
     {
@@ -181,6 +187,11 @@ public class BigBoid : MonoBehaviour
         if (pursueEnabled)
         {
             f += Pursue(pursueTarget);
+        }
+
+        if (avoidanceEnabled)
+        {
+            f += avoidance_calc();
         }
 
         return f;

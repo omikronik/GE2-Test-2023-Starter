@@ -8,26 +8,36 @@ public class CameraBondControl : MonoBehaviour
     public float distance;
     public bool attached = false;
 
-    public FollowCamera fc;
     // detach from nematode
     void Detach()
     {
-        attached = false;
-        fc.enable = false;
+        this.GetComponent<FollowCamera>().enabled = false;
+        this.GetComponent<FPSController>().enabled = true;
     }
 
     // attach to nematode
-    void attach()
+    void OnCollisionEnter(Collision collision)
     {
+        this.GetComponent<FollowCamera>().enabled = true;
+        this.GetComponent<FPSController>().enabled = false;
         attached = true;
-        fc.enable = true;
-
+        Debug.Log("collided");
     }
 
+    void OnCollisionExit(Collision collision)
+    {
+    
+    }
+
+    void OnCollisionStay(Collision collision)
+    {
+    
+    }
     // Start is called before the first frame update
     void Start()
     {
-        fc = GetComponent<FollowCamera>();        
+        this.GetComponent<FollowCamera>().enabled = false;
+        this.GetComponent<FPSController>().enabled = true;
     }
 
     // Update is called once per frame
@@ -39,10 +49,10 @@ public class CameraBondControl : MonoBehaviour
             Detach();
             Debug.Log("pressed Z");
         }
-        if (distance > 2.0f && attached == false)
-        {
-            attach();
-        }
 
+        if (attached == true)
+        {
+            transform.rotation = dodecahedron.transform.rotation;
+        }
     }
 }

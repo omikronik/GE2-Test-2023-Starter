@@ -87,18 +87,7 @@ public class BigBoid : MonoBehaviour
     {
         Vector3 force = Vector3.zero;
 
-        if (Input.GetAxis("Vertical") > 0)
-        {
-            
         force += Input.GetAxis("Vertical") * transform.up * steeringForce;
-
-        }
-        if (Input.GetAxis("Vertical") < 0)
-        {
-        
-        force += Input.GetAxis("Vertical") * transform.up * steeringForce;
-
-        }
 
         Vector3 projectedRight = transform.right;
         projectedRight.y = 0;

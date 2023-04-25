@@ -24,39 +24,16 @@ public class CameraBondControl : MonoBehaviour
         this.GetComponent<FPSController>().enabled = false;
 
         head.GetComponent<BigBoid>().playerSteeringEnabled = true;
-        dodecahedron.GetComponent<dodecamaterial>();
         attached = true;
     }
 
     // attach to nematode on collision
-    void OnCollisionEnter(Collision collision)
-    {
-        Attach();
-        Debug.Log("collided");
-    }
-
-    void OnCollisionExit(Collision collision)
-    {
-
-    }
-
-    void OnCollisionStay(Collision collision)
-    {
-
-    }
-
     void OnTriggerEnter(Collider c)
     {
+        Attach();
         Debug.Log("collided trigger");
     }
 
-    void OnTriggerExit()
-    {
-    }
-
-    void OnTriggerStay()
-    {
-    }
     // Start is called before the first frame update
     void Start()
     {

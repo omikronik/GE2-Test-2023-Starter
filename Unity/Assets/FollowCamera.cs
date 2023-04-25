@@ -6,6 +6,7 @@ public class FollowCamera : MonoBehaviour
 {
     public Transform target; 
     // Start is called before the first frame update
+    public bool enable;
     void Start()
     {
         
@@ -14,7 +15,9 @@ public class FollowCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.Lerp(transform.position, target.position, Time.deltaTime);
-        transform.LookAt(target.parent);
+        if (enable) {
+            transform.position = Vector3.Lerp(transform.position, target.position, Time.deltaTime);
+            transform.LookAt(target.parent);
+        }
     }
 }

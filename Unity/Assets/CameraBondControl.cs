@@ -24,6 +24,7 @@ public class CameraBondControl : MonoBehaviour
         this.GetComponent<FPSController>().enabled = false;
 
         head.GetComponent<BigBoid>().playerSteeringEnabled = true;
+        dodecahedron.GetComponent<dodecamaterial>();
         attached = true;
     }
 
@@ -42,6 +43,19 @@ public class CameraBondControl : MonoBehaviour
     void OnCollisionStay(Collision collision)
     {
 
+    }
+
+    void OnTriggerEnter(Collider c)
+    {
+        Debug.Log("collided trigger");
+    }
+
+    void OnTriggerExit()
+    {
+    }
+
+    void OnTriggerStay()
+    {
     }
     // Start is called before the first frame update
     void Start()
@@ -68,9 +82,6 @@ public class CameraBondControl : MonoBehaviour
 
         if (attached == true)
         {
-            //transform.position = Vector3.Lerp(transform.position, dodecahedron.position, Time.deltaTime);
-            //transform.LookAt(dodecahedron.parent);
-            this.transform.forward = head.transform.forward;
         }
     }
 }
